@@ -62,8 +62,8 @@ class MoaParseHTML {
 
 		$stile = $html->ownerDocument->getElementsByTagName('style')->item(0);
 		# Convert to windows CRLF
-		$_htmlArr['value'] .= trim(str_replace("\n", "\r\n",
-				$stile->nodeValue));
+		$_htmlArr['value'] .= rtrim(str_replace("\n", "\r\n",
+				$stile->nodeValue), ' ');
 
 		$_htmlArr['child_nodes'] = $this->parse_childs($html->childNodes);
 
