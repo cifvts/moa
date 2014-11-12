@@ -42,9 +42,10 @@ class MoaParseHTML {
 				if (empty($_childArr[$_key]['child_nodes'])) {
 					unset($_childArr[$_key]['child_nodes']);
 				}
-			} else if ($child->nodeType == XML_TEXT_NODE
-					&& !empty($child->nodeValue)) {
-				$_childArr[$_key]['value'] = trim(str_replace("\n", "\r\n",
+			} else if (($child->nodeType == XML_TEXT_NODE
+					|| $child->nodeType == XML_CDATA_SECTION_NODE)
+					&& !empty(trim($child->nodeValue))) {
+				$_childArr['value'] = trim(str_replace("\n", "\r\n",
 					$child->nodeValue));
 			}
 		}
