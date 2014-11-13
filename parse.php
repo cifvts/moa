@@ -38,6 +38,12 @@ class MoaParseHTML {
 				if ($child->hasChildNodes()) {
 					$_childArr[$_key]['child_nodes'] =
 							$this->parse_childs($child->childNodes);
+					if (array_key_exists('value',
+							$_childArr[$_key]['child_nodes'])) {
+						$_childArr[$_key]['value'] =
+								$_childArr[$_key]['child_nodes']['value'];
+						unset($_childArr[$_key]['child_nodes']['value']);
+					}
 				}
 				if (empty($_childArr[$_key]['child_nodes'])) {
 					unset($_childArr[$_key]['child_nodes']);
